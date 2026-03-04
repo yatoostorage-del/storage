@@ -1,7 +1,9 @@
 FROM xhofe/alist:latest
 
-ENV ALIST_DATA_DIR=/app/data
+COPY alist_backup.json /opt/alist/alist_backup.json
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 EXPOSE 5244
 
-CMD ["/opt/alist/alist", "server", "--data", "/app/data"]
+ENTRYPOINT ["/start.sh"]
